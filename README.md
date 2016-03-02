@@ -1,4 +1,4 @@
-[Database Map Area (IDs)](http://www.wit.edu/reslife/images/photos/Misc/campus%20map.jpg)
+IDs used in database: [Map Area](http://www.wit.edu/reslife/images/photos/Misc/campus%20map.jpg)
 
 API Examples:
 #### `http://localhost:3000/api/area`

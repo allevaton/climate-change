@@ -5,4 +5,4 @@ API Examples:
 * Area: building, quad, parkinglot
 
 #### `http://localhost:3000/api/area/id`
-* ID: Building ID 525HA for 535 Hangtington Ave.
+* ID: Building ID 525HA for 525 Hangtington Ave.

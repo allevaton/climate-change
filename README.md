@@ -14,9 +14,9 @@ Get area by id (accessed at GET `http://localhost:3000/api/area/:id`)
 List areas by vulnerability type and severity level (accessed at GET `http://localhost:3000/api/vulnerability/:type/:level`)
  - `/api/vulnerability/:type/:level` (EXAMPLE: /heat/severe)
   ## Availiable levels: 
-  "severe"
-  "moderate"
-  "low"
-  "none"
-  "low-moderate"
-  "moderate-severe"
+  - "severe"
+  - "moderate"
+  - "low"
+  - "none"
+  - "low-moderate"
+  - "moderate-severe"

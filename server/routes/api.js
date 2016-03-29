@@ -8,7 +8,7 @@ restapi.get('/:choice', function(req, res){
     var results  = [];
 
     if (req.params.choice == "index") { // List all areas with index
-      db.each("SELECT * FROM area", function (err, result) {
+      db.each("SELECT area.*, AreaFloor.FloodingSeverity AS 'Vulnerability' FROM area JOIN AreaFloor ON AreaFloor.AreaID = area.ID GROUP BY area.ID ORDER BY FloodingSeverity DESC", function (err, result) {
          results.push(result);
       },
       function () {

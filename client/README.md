@@ -12,7 +12,7 @@ State:
         lat: Number,
         lng: Number,
         name: String,
-        iconType: String, // list of known values not obtained by the server
+        type: String
       }
     },
     isFetching: false,
@@ -29,6 +29,7 @@ State:
     vulnerabilities: {
       [vuln.id]: {
         name: String,
+        type: String
         description: String
       }
     }

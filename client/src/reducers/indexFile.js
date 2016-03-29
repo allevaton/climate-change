@@ -22,7 +22,10 @@ export default function indexReducer(state = {
             floors: cur.Floors,
             type: cur.Type,
             lat: cur.Latitude,
-            lng: cur.Longitude
+            lng: cur.Longitude,
+            street: cur.Street,
+            year: cur.Year,
+            vulnerability: cur.Vulnerability
           }
         }
       }, {});

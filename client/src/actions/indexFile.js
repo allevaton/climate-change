@@ -37,7 +37,7 @@ function fetchIndexFile() {
 
 function shouldFetchIndexFile(state) {
   const index = state.index;
-  if (index.data.length === 0) {
+  if (index.areas && Object.keys(index.areas).length === 0) {
     return true;
   } else if (index.isFetching) {
     return false;

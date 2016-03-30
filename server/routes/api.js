@@ -34,7 +34,7 @@ restapi.get('/:choice', function(req, res){
     });
 
     } else {
-      res.json("Not valid entry /" + req.params.choice);
+      res.status(400).send("Not valid entry /" + req.params.choice);
     }
 });
 
@@ -50,7 +50,7 @@ restapi.get('/area/:area_id', function(req,res) {
    },
    function () {
       if (results.length <= 0) {
-        res.json("/" + req.params.area_id + " is not a valid entry");
+        res.status(400).send("/" + req.params.area_id + " is not a valid entry");
       } else {
         res.json(results);
       }
@@ -98,11 +98,11 @@ restapi.get('/vulnerability/:type/:level', function(req,res) {
       });
     }
     else {
-      res.json("/" + req.params.type + ". Select one of the following vulnerabilities: /heat /stormsurge /flooding");
+      res.status(400).send("/" + req.params.type + ". Select one of the following vulnerabilities: /heat /stormsurge /flooding");
     }
   }
   else {
-    res.json("/" + req.params.level + ". Select one of the following vulnerability levels: /moderate-severe /low-moderate /none /low /moderate /severe");
+    res.status(400).send("/" + req.params.level + ". Select one of the following vulnerability levels: /moderate-severe /low-moderate /none /low /moderate /severe");
   }
 
 

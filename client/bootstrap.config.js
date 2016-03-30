@@ -55,7 +55,7 @@ module.exports = {
     'progress-bars': false,
     'media': true,
     'list-group': true,
-    'panels': true,
+    'panels': false,
     'wells': true,
     'close': true,
 

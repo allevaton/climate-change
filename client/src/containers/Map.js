@@ -1,40 +1,23 @@
 import {connect} from 'react-redux';
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 import {GoogleMapLoader, GoogleMap, Marker} from 'react-google-maps';
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  handleMapClick() {
-
-  }
-
-  markerClick(area) {
-    console.log(area);
-  }
-
   render() {
     return (
       <section style={{height: '100%'}}>
         <GoogleMapLoader
           containerElement={
-            <div
-              {...this.props}
-              style={{
-                height: '100%'
-              }}
-            />
+            <div style={{height: '100%'}} />
           }
           googleMapElement={
             <GoogleMap
               defaultZoom={18}
-              defaultCenter={{lat: 42.336137, lng: -71.0958872}}
-              onClick={::this.handleMapClick}>
+              defaultCenter={{lat: 42.336137, lng: -71.0958872}}>
               {Object.keys(this.props.areas).map((areaKey, index) => {
                 let area = this.props.areas[areaKey];
+                // TODO severity should set the icon here
                 return (
                   <Marker
                     key={index}
@@ -43,9 +26,7 @@ class Map extends Component {
                       lng: area.lng
                     }}
                     title={area.name}
-                    onClick={() => {
-                      ::this.markerClick(area)
-                    }}
+                    onClick={() => this.props.markerClick(area)}
                   />
                 );
               })}
@@ -56,6 +37,10 @@ class Map extends Component {
     );
   }
 }
+
+Map.propTypes = {
+  markerClick: PropTypes.func.isRequired
+};
 
 function mapStateToProps(state) {
   return {

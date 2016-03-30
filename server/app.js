@@ -7,11 +7,14 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
+
 var cors = require('cors');
+var compression = require('compression');
 
 var app = express();
 
 app.use(cors());
+app.use(compression());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

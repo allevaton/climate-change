@@ -3,6 +3,13 @@ var restapi = express();
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('ClimateChange.db');
 
+/* get type using the following API call (GET http://localhost:3000/api/:choice)
+ * @Pre-Condition:    http://localhost:3000/api/index
+ * @Post-Condition:   if      index:                       [ { "key": "value" } ]
+ *                    else if building, quad, parkinglot:  [ { "key": "value" } ]
+ *                    else if vulnerability:               [ { "key": "value" } ]
+ *                    else    res.status(400)
+ */
 restapi.get('/:choice', function(req, res){
 
     var results  = [];
@@ -38,9 +45,10 @@ restapi.get('/:choice', function(req, res){
     }
 });
 
-/* get area by id (accessed at GET http://localhost:3000/api/area/:id)
- * Available input to list a specific entity:
- *    /api/area/:id (EXAMPLE: 555HA)
+/* get area by using id (GET http://localhost:3000/api/area/:id)
+ * @Pre-Condition:    http://localhost:3000/api/area/:id
+ * @Post-Condition:   if      area_id is valid:     [ { "key": "value" } ]
+ *                    else if area_id is not-valid: res.status(400)
  */
 restapi.get('/area/:area_id', function(req,res) {
    var results = [];
@@ -57,9 +65,12 @@ restapi.get('/area/:area_id', function(req,res) {
    });
 });
 
-/* List areas by vulnerability type and level (accessed at GET http://localhost:3000/api/vulnerability/:type/:level)
- * Available input to list a specific entity:
- *    /api/vulnerability/:type/:level (EXAMPLE: /heat/severe)
+/* get vulnerability using a given type and level (GET http://localhost:3000/api/vulnerability/:type/:level)
+ * @Pre-Condition:    call API: http://localhost:3000/api/vulnerability/:type/:level
+ * @Post-Condition:   if level or type are valid:      [ { "key": "value" } ]
+ *                    if level or type are not-valid:  res.status(400)
+ *                    if type & level are valid:       [ { "key": "value" } ]
+ *                    if type & level are not-valid:   res.status(400)
  */
 restapi.get('/vulnerability/:type/:level', function(req,res) {
 

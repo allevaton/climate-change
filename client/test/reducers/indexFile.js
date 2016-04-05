@@ -42,19 +42,29 @@ describe('index reducer', () => {
       lastUpdated: 'now',
       areas: {
         '25': {
+          id: '25',
           name: 'Huntington',
           floors: undefined,
           type: undefined,
           lat: undefined,
-          lng: undefined
+          lng: undefined,
+          street: undefined,
+          vulnerability: undefined,
+          year: undefined,
+          seaLevel: undefined
         },
 
         'HHA': {
+          id: 'HHA',
           name: 'Huntington Avenue',
           floors: undefined,
           type: undefined,
           lat: undefined,
-          lng: undefined
+          lng: undefined,
+          street: undefined,
+          vulnerability: undefined,
+          year: undefined,
+          seaLevel: undefined
         }
       }
     }

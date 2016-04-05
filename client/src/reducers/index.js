@@ -3,9 +3,11 @@
 import {combineReducers} from 'redux';
 
 import index from './indexFile';
+import areas from './areas'
 
 const rootReducer = combineReducers({
-  index
+  index,
+  areas
 });
 
 export default rootReducer;

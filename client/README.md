@@ -15,15 +15,17 @@ State:
         type: String
       }
     },
-    isFetching: false,
-    invalidated: false
+    isFetching: Boolean,
+    invalidated: Boolean
   },
   areas: {
     [area.id]: {
       isFetching: Boolean,
-      data: Object,
-      lastUpdated: Date
-    }
+      data: Array,
+      selectedFloor: String
+    },
+
+    selectedArea: [area.id]
   },
   help: {
     vulnerabilities: {

@@ -12,7 +12,7 @@ html, body {
 }
 
 .panel {
-  padding: 8px;
+  // padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 12px;
 
@@ -24,6 +24,15 @@ html, body {
   z-index: 10000;
 }
 
+.lat-lng {
+  .panel;
+
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 400px;
+}
+
 .lightbox {
   .positionPadding(fixed, 0);
   background-color: black;
@@ -32,29 +41,144 @@ html, body {
 }
 
 .main-panel {
-  .positionPadding(fixed, 10px);
   .panel;
+
+  position: fixed;
+  top: 2%;
+  left: 2%;
+  width: 96%;
+  height: 96%;
+
+  padding-top: 0;
+
+  .close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 20px;
+
+    cursor: pointer;
+    float: right;
+    font-size: 2em;
+    color: rgba(0, 0, 0, 0.76);
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.25);
+    }
+  }
 
   .header {
     background-color: rgba(0, 0, 0, 0.21);
-    height: 128px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    height: 100px;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // right: 0;
     box-shadow: 0 2px 2px gray;
+    padding-top: 25px;
+    padding-left: 25px;
+    z-index: 1000000;
 
-    i {
-      padding: 20px;;
-      cursor: pointer;
-      float: right;
-      font-size: 2em;
-      color: rgba(0, 0, 0, 0.76);
+    h1 {
+      margin-top: 0;
+      font-size: 3.2em;
+    }
+  }
 
-      &:hover {
-        color: rgba(0, 0, 0, 0.25);
+  .content {
+    padding: 25px;
+    height: calc(~"100% - 100px");
+    overflow-y: scroll;
+    position: absolute;
+    width: 100%;
+
+    .floor-list {
+      list-style: none;
+      font-size: 1.1em;
+      padding-left: 10px;
+
+      li {
+        color: darkgray;
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:hover {
+          color: gray;
+        }
+
+        &.active {
+          color: black;
+          text-decoration: none;
+        }
       }
     }
+
+    .vulnerability {
+      padding-bottom: 5px;
+
+      div.row {
+        font-size: 1.4em;
+      }
+
+      table {
+        margin-bottom: 2px;
+        text-indent: 5px;
+      }
+
+      table.vuln-row {
+        padding-bottom: 5px;
+      }
+
+      .type {
+        font-size: 1.1em;
+        font-weight: bold;
+      }
+
+      .extreme-heat {
+        background-color: red;
+        background-image: url('../images/extreme-heat.png');
+        width: 45px;
+      }
+
+      .flooding {
+        background-color: blue;
+        background-image: url('../images/flooding.png');
+        width: 45px;
+      }
+
+      .storm-surge {
+        background-color: yellow;
+        background-image: url('../images/storm-surge.png');
+        width: 45px;
+      }
+    }
+  }
+}
+
+.severity {
+  .severe {
+    font-weight: bold;
+    color: red;
+  }
+
+  .moderate-severe {
+    color: #db7c53;
+  }
+
+  .moderate {
+    color: #bfae11;
+  }
+
+  .low-moderate {
+    color: #17a0b8;
+  }
+
+  .low {
+    color: #4c7eee;
+  }
+
+  .none {
+    color: green;
   }
 }
 

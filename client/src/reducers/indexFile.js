@@ -25,7 +25,9 @@ export default function indexReducer(state = {
             lng: cur.Longitude,
             street: cur.Street,
             year: cur.Year,
-            vulnerability: cur.Vulnerability
+            vulnerability: cur.Vulnerability,
+            seaLevel: cur.SeaLevel,
+            id: cur.ID
           }
         }
       }, {});

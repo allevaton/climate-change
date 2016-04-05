@@ -1,3 +1,4 @@
+/* global google */
 import {connect} from 'react-redux';
 import React, {Component, PropTypes} from 'react';
 
@@ -14,7 +15,9 @@ class Map extends Component {
           googleMapElement={
             <GoogleMap
               defaultZoom={18}
-              defaultCenter={{lat: 42.336137, lng: -71.0958872}}>
+              onClick={this.props.mapOnClick}
+              defaultCenter={{lat: 42.336137, lng: -71.0958872}}
+              >
               {Object.keys(this.props.areas).map((areaKey, index) => {
                 let area = this.props.areas[areaKey];
                 // TODO severity should set the icon here
@@ -24,6 +27,12 @@ class Map extends Component {
                     position={{
                       lat: area.lat,
                       lng: area.lng
+                    }}
+                    icon={{
+                      url: `../images/icons/${area.vulnerability}.png`,
+                      scaledSize: new google.maps.Size(32, 32),
+                      origin: new google.maps.Point(0,0),
+                      anchor: new google.maps.Point(18, 18)
                     }}
                     title={area.name}
                     onClick={() => this.props.markerClick(area)}

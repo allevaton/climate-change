@@ -3,6 +3,7 @@ import React, {Component, PropTypes} from 'react';
 
 import MainPanel from '../components/MainPanel';
 
+// TODO why is this container even here?
 class MainContainer extends Component {
   render() {
     return (

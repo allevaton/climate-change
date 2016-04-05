@@ -52,16 +52,24 @@ restapi.get('/:choice', function(req, res){
  */
 restapi.get('/area/:area_id', function(req,res) {
    var results = [];
+   var description = '';
    db.each("SELECT Area.Name AS 'Area Name', FloorLevel AS 'Floor Level', Room.Name AS 'Room Name', ONE.ID AS 'Storm Surge Severity', THREE.ID AS 'Extreme Heat Severity', TWO.ID AS 'Flooding Severity' FROM AreaFloor JOIN Floor ON AreaFloor.FloorID = Floor.ID JOIN Area ON AreaFloor.AreaID = Area.ID LEFT OUTER JOIN Room ON AreaFloor.RoomID = Room.ID JOIN Vulnerability SS ON AreaFloor.VulnerabilityType1 = SS.ID JOIN Vulnerability HT ON AreaFloor.VulnerabilityType2 = HT.ID JOIN Vulnerability FL ON AreaFloor.VulnerabilityType3 = FL.ID JOIN Severity ONE ON AreaFloor.StormSurgeSeverity = ONE.ID JOIN Severity TWO ON AreaFloor.FloodingSeverity = TWO.ID JOIN Severity THREE ON AreaFloor.HeatSeverity = THREE.ID WHERE AreaFloor.AreaID = ? collate nocase",
     req.params.area_id, function (err, result) {
       results.push(result);
    },
    function () {
+     db.each('SELECT ID, Description from Area WHERE ID=?', req.params.area_id, (err, result) => {
+       description = result.Description;
+     }, () => {
       if (results.length <= 0) {
         res.status(400).send("/" + req.params.area_id + " is not a valid entry");
       } else {
-        res.json(results);
+        res.json({
+          results,
+          description
+        });
       }
+     });
    });
 });
 

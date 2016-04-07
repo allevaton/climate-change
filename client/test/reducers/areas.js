@@ -4,6 +4,7 @@ import reducer from '../../src/reducers/areas';
 let request, result;
 
 describe('area reducer', () => {
+
   it('should return the default state', () => {
     expect(reducer(undefined, {type: ''})).toEqual({
       selectedArea: ''

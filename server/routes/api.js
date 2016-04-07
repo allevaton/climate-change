@@ -6,6 +6,7 @@ var db = new sqlite3.Database('ClimateChange.db');
 /* get type using the following API call (GET http://localhost:3000/api/:choice)
  * @Pre-Condition:    http://localhost:3000/api/index
  * @Post-Condition:   if      index:                       [ { "key": "value" } ]
+ *                    else if help:                        [ { "key": "value" } ]
  *                    else if building, quad, parkinglot:  [ { "key": "value" } ]
  *                    else if vulnerability:               [ { "key": "value" } ]
  *                    else    res.status(400)
@@ -22,7 +23,15 @@ restapi.get('/:choice', function(req, res){
          res.json(results);
       });
 
-    } else if (req.params.choice == "building" || req.params.choice == "quad" || req.params.choice == "parkinglot") { // List all areas
+    } else if (req.params.choice == "help") {
+      db.each("SELECT * FROM Vulnerability;", function (err, result) {
+         results.push(result);
+      },
+      function () {
+         res.json(results);
+      });
+
+   } else if (req.params.choice == "building" || req.params.choice == "quad" || req.params.choice == "parkinglot") { // List all areas
 
       db.each("SELECT * FROM Area WHERE Type = ? collate nocase", req.params.choice, function (err, result) {
        results.push(result);
@@ -123,9 +132,6 @@ restapi.get('/vulnerability/:type/:level', function(req,res) {
   else {
     res.status(400).send("/" + req.params.level + ". Select one of the following vulnerability levels: /moderate-severe /low-moderate /none /low /moderate /severe");
   }
-
-
-
 });
 
 module.exports = restapi;

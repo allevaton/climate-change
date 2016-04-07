@@ -51,17 +51,20 @@ describe('area reducer', () => {
     request = {
       type: 'RECEIVE_AREA',
       areaId: '555HA',
-      data: [{
-        name: '555 Huntington'
-      }]
+      data: {
+        results: [{
+          name: '555 Huntington'
+        }]
+      }
     };
     result = {
       selectedArea: '',
       '555HA': {
         isFetching: false,
         selectedFloor: '',
+        description: undefined,
         data: [{
-          name: '555 Huntington'
+            name: '555 Huntington'
         }]
       }
     };
@@ -72,16 +75,19 @@ describe('area reducer', () => {
     request = {
       type: 'RECEIVE_AREA',
       areaId: '555HA',
-      data: [{
-        name: '555 Huntington',
-        'Floor Level': 'Ground'
-      }]
+      data: {
+        results: [{
+          name: '555 Huntington',
+          'Floor Level': 'Ground'
+        }]
+      }
     };
     result = {
       selectedArea: '',
       '555HA': {
         isFetching: false,
         selectedFloor: 'Ground',
+        description: undefined,
         data: [{
           name: '555 Huntington',
           'Floor Level': 'Ground'
@@ -96,19 +102,24 @@ describe('area reducer', () => {
     request = {
       type: 'RECEIVE_AREA',
       areaId: '555HA',
-      data: [{
-        name: '555 Huntington',
-        'Floor Level': 'Ground'
-      }, {
-        name: '555 Huntington',
-        'Floor Level': 'First'
-      }]
+      data: {
+        results: [
+          {
+            name: '555 Huntington',
+            'Floor Level': 'Ground'
+          }, {
+            name: '555 Huntington',
+            'Floor Level': 'First'
+          }
+        ]
+      }
     };
     result = {
       selectedArea: '',
       '555HA': {
         isFetching: false,
         selectedFloor: 'Ground',
+        description: undefined,
         data: [{
           name: '555 Huntington',
           'Floor Level': 'Ground'
@@ -130,6 +141,7 @@ describe('area reducer', () => {
       '555HA': {
         isFetching: false,
         selectedFloor: 'First',
+        description: undefined,
         data: [{
           name: '555 Huntington',
           'Floor Level': 'Ground'
@@ -140,5 +152,33 @@ describe('area reducer', () => {
       }
     };
     expect(state = reducer(state, request)).toEqual(result);
+  })
+
+  it('should set the description when receiving data', () => {
+
+    request = {
+      type: 'RECEIVE_AREA',
+      areaId: '555HA',
+      data: {
+        description: 'Hello world',
+        results: [{
+          name: '555 Huntington',
+          'Floor Level': 'Ground'
+        }]
+      }
+    };
+    result = {
+      selectedArea: '',
+      '555HA': {
+        isFetching: false,
+        selectedFloor: 'Ground',
+        description: 'Hello world',
+        data: [{
+          name: '555 Huntington',
+          'Floor Level': 'Ground'
+        }]
+      }
+    };
+    expect(reducer(undefined, request)).toEqual(result);
   })
 });

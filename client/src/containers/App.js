@@ -7,7 +7,7 @@ import MainContainer from './MainContainer';
 import {changeArea, fetchAreaDataIfNeeded} from '../actions/area'
 
 class App extends Component {
-  // TODO move this state to redux state
+  // TODO:0 move this state to redux state
   state = {
     mainContainerVisible: false
   }

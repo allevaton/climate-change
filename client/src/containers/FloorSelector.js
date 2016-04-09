@@ -7,7 +7,7 @@ import {changeAreaFloor} from '../actions/area';
 class FloorSelector extends Component {
   render() {
     let {floors, onChange, areaId, selectedFloor} = this.props;
-    // TODO put selected here with "active" class
+    // TODO:10 put selected here with "active" class
     return (
       <ul className="floor-list">
         {floors && floors.map((floor, i) => {

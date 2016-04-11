@@ -5,6 +5,7 @@ import Map from './Map';
 import MainContainer from './MainContainer';
 
 import {changeArea, fetchAreaDataIfNeeded} from '../actions/area'
+import HelpModal from '../containers/HelpModal';
 
 class App extends Component {
   // TODO:0 move this state to redux state
@@ -31,6 +32,8 @@ class App extends Component {
           className="lightbox"
           style={{display: this.state.mainContainerVisible ? 'block' : 'none'}}
           />
+
+        <HelpModal />
 
         <Map
           markerClick={::this.markerClick}

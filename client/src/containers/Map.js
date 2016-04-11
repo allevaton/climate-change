@@ -20,7 +20,6 @@ class Map extends Component {
               >
               {Object.keys(this.props.areas).map((areaKey, index) => {
                 let area = this.props.areas[areaKey];
-                // TODO:20 severity should set the icon here
                 return (
                   <Marker
                     key={index}

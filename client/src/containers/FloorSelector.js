@@ -26,7 +26,7 @@ class FloorSelector extends Component {
 }
 
 FloorSelector.propTypes = {
-  areaId: PropTypes.string.isRequired
+  areaId: PropTypes.string
 }
 
 function mapStateToProps(state, props) {

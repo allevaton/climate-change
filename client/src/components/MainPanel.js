@@ -21,10 +21,12 @@ export default class MainPanel extends Component {
         </div>
 
         <div className="container-fluid content">
-          <div className="col-sm-5" style={{
-              border: '1px solid black'
-            }}>
-            IMAGE
+          <div className="col-sm-5">
+            <img
+              src={`../images/pictures/${area.id}.png`}
+              className="img-responsive"
+              alt={`Image of ${area.name}`}
+               />
           </div>
 
           <div className="col-sm-7">
@@ -41,9 +43,11 @@ export default class MainPanel extends Component {
 
                 <div className="row">
                   <br/>
+                  {area.description}
+                  <br/>
+                  <br/>
                   <VulnerabilitySection />
                   <br/>
-                  {area.description}
                 </div>
               </div>
 
